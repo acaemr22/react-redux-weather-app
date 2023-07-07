@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { fetchGeo, fetchData } from "./features/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Today from "./components/Today";
+import TodayDetails from "./components/TodayDetails";
+import Week from "./components/Week";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,21 +15,23 @@ function App() {
     (state) => state.weather.fetchData.status
   );
   useEffect(() => {
-    if (fetchDataStatus === "idle") {
-      dispatch(fetchGeo("Istabul"));
-    }
     if (
       JSON.stringify(geoData) === "{}" &&
-      fetchGeoStatus === "idle" &&
+      fetchDataStatus === "idle" &&
       (geoData[0]?.lan ?? null)
-    ) {
-      dispatch(fetchData({ lan: geoData[0].lan, lon: geoData[0].lon }));
+      ) {
+      // When application started it will try to fetch weather data for Istanbul
+      // dispatch(fetchData({ lat: 41.0091982, lon: 28.9662187, location: geoData[0].name, changeLocation: false }));
     }
   }, []);
 
   return (
-    <main className="flex flex-col items-center justify-center w-screen h-screen">
-
+    <main className="flex flex-row items-center justify-center w-full h-full">
+      <Today />
+      <div className="flex flex-col bg-gray-100">
+        <Week />
+        <TodayDetails />
+      </div>
     </main>
   );
 }

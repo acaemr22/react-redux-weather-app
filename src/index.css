@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#search-places {
+  font-family: "Poppins", sans-serif;
+}
