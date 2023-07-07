@@ -37,7 +37,7 @@ const Today = () => {
           // Get the user's latitude and longitude coordinates
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
-          // dispatch(fetchData({ lat, lon }));
+          dispatch(fetchData({ lat, lon: lng }));
 
           // Do something with the location data, e.g. display on a map
           console.log(`Latitude: ${lat}, longitude: ${lng}`);
