@@ -15,20 +15,16 @@ function App() {
     (state) => state.weather.fetchData.status
   );
   useEffect(() => {
-    if (
-      JSON.stringify(geoData) === "{}" &&
-      fetchDataStatus === "idle" &&
-      (geoData[0]?.lan ?? null)
-      ) {
+    if (fetchDataStatus === "idle") {
       // When application started it will try to fetch weather data for Istanbul
-      // dispatch(fetchData({ lat: 41.0091982, lon: 28.9662187, location: geoData[0].name, changeLocation: false }));
+      dispatch(fetchData({ lat: 41.0091982, lon: 28.9662187 }));
     }
   }, []);
 
   return (
-    <main className="flex flex-row items-center justify-center w-full h-full">
+    <main className="flex flex-col lg:flex-row items-center justify-center w-full h-full">
       <Today />
-      <div className="flex flex-col bg-gray-100">
+      <div className="flex flex-col bg-gray-100 lg:w-3/5 xl:w-3/4 h-full sm:py-10 w-full">
         <Week />
         <TodayDetails />
       </div>

@@ -21,12 +21,12 @@ export const fetchData = createAsyncThunk(
   "weather/fetchData",
   async ({ lat, lon }) => {
     const res = await axios(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=current,hourly,daily{part}&appid=${
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=current,hourly,daily{part}&units=metric&appid=${
         import.meta.env.VITE_OPEN_WEATHER_API_KEY
       }`
     );
     console.log(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=current,hourly,daily{part}&appid=${
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=current,hourly,daily{part}&units=metric&appid=${
         import.meta.env.VITE_OPEN_WEATHER_API_KEY
       }`
     );
