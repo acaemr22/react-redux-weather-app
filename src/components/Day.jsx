@@ -1,13 +1,9 @@
 import React from "react";
 import Icon from "./Icon";
 
-const Day = ({ day, mainObj, main, dt_txt, firDay }) => {
+const Day = ({ day, mainObj, main, dt_txt }) => {
   return (
-    <div
-      className={`bg-white dark:bg-[#1B262C] px-5 py-2 rounded-lg relative ${
-        firDay === day ? "hidden" : ""
-      }`}
-    >
+    <div className="bg-white dark:bg-[#1B262C] px-5 py-2 rounded-lg relative">
       <div className="text-center font-semibold">{day.slice(0, 3)}</div>
       <div className="flex items-center justify-center">
         <Icon main={main} size={80} />

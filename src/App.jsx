@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { changeTheme, fetchData } from "./features/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Today from "./components/Today";
-import TodayDetails from "./components/TodayDetails";
-import Week from "./components/Week";
 import { CircularProgress } from "@mui/material";
 import { Sun } from "@phosphor-icons/react";
 import { Moon } from "@phosphor-icons/react";
 import { Desktop } from "@phosphor-icons/react";
+
+import Today from "./components/Today";
+import TodayDetails from "./components/TodayDetails";
+import Week from "./components/Week";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,8 +16,6 @@ function App() {
     (state) => state.weather.fetchData.status
   );
   const theme = useSelector((state) => state.weather.theme);
-
-  
 
   useEffect(() => {
     // When application started it will try to fetch weather data for Istanbul

@@ -1,5 +1,3 @@
-import { style } from "@mui/system";
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const Theme = ({ children }) => {
@@ -13,8 +11,7 @@ const Theme = ({ children }) => {
     /* -webkit-box-shadow: 0 0 0px 1000px #1b1b6c inset; */
     background-color: #1b262c;
     transition: background-color 5000s ease-in-out 0s;
-  }
-  `;
+  }`;
 
   const CSS = `input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -25,18 +22,17 @@ const Theme = ({ children }) => {
     /* -webkit-box-shadow: 0 0 0px 1000px #1b1b6c inset; */
     background-color: #fff;
     transition: background-color 5000s ease-in-out 0s;
-  }
-  `;
+  }`;
 
   return (
     <div
-      className={`${
+      className={
         theme === "dark" ||
         (theme === "OS" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches)
           ? "dark"
           : ""
-      }`}
+      }
     >
       {theme === "dark" ||
       (theme === "OS" &&

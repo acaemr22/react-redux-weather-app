@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const Icon = ({ main, size = 50, viewBox = "0 0 148 148" }) => {
   const containerRef = useRef(null);
