@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const fetchGeo = createAsyncThunk("weather/fetchGeo", async (city) => {
   const res = await axios(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${
       import.meta.env.VITE_OPEN_WEATHER_API_KEY
     }`
   );
