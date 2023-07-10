@@ -44,7 +44,7 @@ const TodayDetails = () => {
       {weatherData?.list != undefined && (
         <div className="sm:grid-cols-2 px-5  lg:px-2 gap-3 lg:gap-x-5 lg:gap-y-5 py-10 grid xl:grid-cols-3">
           {/* Humidity */}
-          <div className="shadow-xl bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
+          <div className="dark:bg-[#1B262C] shadow-xl bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
             <h4 className="text-blue-400 text-xl font-semibold">Humidity</h4>
             <div>
               <svg
@@ -89,7 +89,7 @@ const TodayDetails = () => {
             </div>
           </div>
           {/* Pressure */}
-          <div className="shadow-lg bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
+          <div className="dark:bg-[#1B262C] shadow-lg bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
             <h4 className="text-blue-400 text-xl font-semibold">Pressure</h4>
             <div>
               <svg
@@ -111,7 +111,7 @@ const TodayDetails = () => {
             </div>
           </div>
           {/* Clouds */}
-          <div className="shadow-lg bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
+          <div className="dark:bg-[#1B262C] shadow-lg bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
             <h4 className="text-blue-400 text-xl font-semibold">Clouds</h4>
             <div>
               <svg
@@ -151,7 +151,7 @@ const TodayDetails = () => {
             </div>
           </div>
           {/* Visibility */}
-          <div className="shadow-lg bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
+          <div className="dark:bg-[#1B262C] shadow-lg bg-white rounded-md p-2 py-5 flex flex-col items-center gap-y-2">
             <h4 className="text-blue-400 text-xl font-semibold">Visibility</h4>
             <div>
               <svg
@@ -174,7 +174,7 @@ const TodayDetails = () => {
             </div>
           </div>
           {/* Temperature Diff */}
-          <div className="shadow-lg bg-white rounded-md p-2 py-5 divide-x-4 grid grid-cols-2">
+          <div className="dark:bg-[#1B262C] shadow-lg bg-white rounded-md p-2 py-5 divide-x-4 grid grid-cols-2">
             <div className="flex flex-col items-center justify-center">
               <div>
                 <svg
@@ -230,7 +230,7 @@ const TodayDetails = () => {
             </div>
           </div>
           {/* Sun set and sun rise */}
-          <div className="shadow-lg bg-white rounded-md p-2 py-5 grid grid-cols-2 divide-x-4">
+          <div className="shadow-lg dark:bg-[#1B262C] bg-white rounded-md p-2 py-5 grid grid-cols-2 divide-x-4">
             <div className="flex flex-col items-center justify-center">
               <div>
                 <svg

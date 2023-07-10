@@ -100,8 +100,8 @@ const Today = () => {
   };
 
   return (
-    <div className="flex flex-col lg:h-full w-full lg:w-2/5 xl:w-1/4 py-10">
-      <div className="flex flex-col items-center justify-center gap-y-1">
+    <div className="flex flex-col dark:text-white lg:h-full w-full lg:w-2/5 xl:w-1/4 py-10">
+      <div className="flex flex-col h-full items-center justify-center gap-y-1">
         <form
           className="flex-row flex items-center justify-center gap-x-5"
           onSubmit={handleSubmit}
@@ -126,11 +126,11 @@ const Today = () => {
                   ? `${weatherData.city?.name}, ${weatherData.city?.country}`
                   : "Search for places..."
               }
-              className="p-1 outline-none placeholder:text-black w-48 lg:w-auto shadow-[inset_0_0_0px_1000px_rgb(255,255,255)]"
+              className="p-1 outline-none dark:bg-[#1B262C] border-none dark:text-white dark:placeholder:text-white placeholder:text-black w-48 lg:w-auto"
             />
           </div>
           <div
-            className="rounded-full hover:text-[#9DB2BF] bg-gray-100 p-2 cursor-pointer"
+            className="rounded-full hover:text-[#9DB2BF] dark:bg-[#0F4C75] bg-gray-100 p-2 cursor-pointer"
             onClick={handleUserLocation}
           >
             <CrosshairSimple size={22} />
@@ -138,7 +138,7 @@ const Today = () => {
         </form>
         <div className="relative flex items-start justify-start w-72">
           <div
-            className={`bg-gray-100 cursor-pointer w-full absolute z-1 font-semibold flex justify-center flex-col overflow-clip rounded-lg ${
+            className={`bg-gray-100 dark:bg-[#BBE1FA] cursor-pointer w-full absolute z-1 font-semibold flex justify-center flex-col overflow-clip rounded-lg ${
               !search && geoData ? "hidden" : ""
             }`}
           >
@@ -150,27 +150,31 @@ const Today = () => {
                   onClick={() => geoData && handleClick(geoData[index])}
                   className={`p-1 pl-3 rounded-md ${
                     sendIndex === index
-                      ? "bg-[#9DB2BF] text-white"
-                      : "hover:text-white hover:bg-[#9DB2BF]"
+                      ? "bg-[#9DB2BF] dark:bg-[#3282B8] text-white"
+                      : "hover:text-white dark:bg-[#BBE1FA] dark:text-black hover:bg-[#3282B8]"
                   }  text-ellipsis overflow-hidden whitespace-nowrap`}
                 >
                   {data.name}, {data.country}
-                  {"\n"}
                 </option>
               ))
             ) : (
-              <div
-                onClick={() => geoData && handleClick(geoData[index])}
-                className="p-1 pl-3 rounded-md font-normal italic"
-              >
-                No place found
+              <div>
+                {fetchGeoStatus === "pending" ? (
+                  <div className="p-1 pl-3 dark:bg-[#BBE1FA] dark:text-black rounded-md font-normal italic">
+                    Loading...
+                  </div>
+                ) : (
+                  <div className="p-1 pl-3 dark:bg-[#BBE1FA] dark:text-black rounded-md font-normal italic">
+                    No place found
+                  </div>
+                )}
               </div>
             )}
           </div>
         </div>
       </div>
       {JSON.stringify(weatherData) !== "{}" && (
-        <div className="flex flex-col lg:justify-normal items-center justify-center">
+        <div className="flex flex-col h-full lg:justify-normal items-center justify-center">
           <div className="flex flex-col items-center">
             <Icon
               main={weatherData.list[0].weather[0].main}

@@ -4,7 +4,7 @@ import Icon from "./Icon";
 const Day = ({ day, mainObj, main, dt_txt, firDay }) => {
   return (
     <div
-      className={`bg-white px-5 py-2 rounded-lg relative ${
+      className={`bg-white dark:bg-[#1B262C] px-5 py-2 rounded-lg relative ${
         firDay === day ? "hidden" : ""
       }`}
     >
