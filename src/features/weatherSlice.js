@@ -14,13 +14,11 @@ export const fetchGeo = createAsyncThunk("weather/fetchGeo", async (city) => {
 export const fetchData = createAsyncThunk(
   "weather/fetchData",
   async ({ lat, lon }) => {
-    // const res = await axios(
-    //   `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${
-    //     import.meta.env.VITE_OPEN_WEATHER_API_KEY
-    //   }`
-    // );
-
-    throw new Error("Not implemented");
+    const res = await axios(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${
+        import.meta.env.VITE_OPEN_WEATHER_API_KEY
+      }`
+    );
     return { data: res.data };
   }
 );

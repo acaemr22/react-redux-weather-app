@@ -15,7 +15,12 @@ const Today = () => {
     "Friday",
     "Saturday",
   ];
-
+  // Code for Future Update
+  // const [lastestSearches, setLastestSearches] = useState(
+  //   localStorage.getItem("lastestSearches")
+  //     ? JSON.parse(localStorage.getItem("lastestSearches"))
+  //     : []
+  // );
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   function getCurrentDimension() {
     return {
@@ -48,14 +53,36 @@ const Today = () => {
     if (search.length > 1) {
       setSearch("");
       dispatch(fetchData(geoData[sendIndex]));
+      // Code for future update
+      // if (lastestSearches.length < 3) {
+      //   setLastestSearches([
+      //     ...lastestSearches,
+      //     {
+      //       name: geoData[sendIndex].name,
+      //       lat: geoData[sendIndex].lat,
+      //       lon: geoData[sendIndex].lon,
+      //     },
+      //   ]);
+      // } else {
+      //   setLastestSearches([
+      //     ...lastestSearches.slice(1),
+      //     geoData[sendIndex].name,
+      //   ]);
+      // }
       setSendIndex(0);
     }
   };
 
-  const handleClick = ({ lat, lon }) => {
+  const handleClick = ({ lat, lon }, name) => {
     setSearch("");
     dispatch(fetchData({ lat, lon }));
     setSendIndex(0);
+    // Code for future update
+    // if (lastestSearches.length < 3) {
+    //   setLastestSearches([...lastestSearches, { name, lat, lon }]);
+    // } else {
+    //   setLastestSearches([...lastestSearches.slice(1), { name, lat, lon }]);
+    // }
   };
 
   const handleUserLocation = () => {
@@ -121,6 +148,7 @@ const Today = () => {
               id="search-places"
               value={search}
               onChange={handleChange}
+              autoComplete="off"
               placeholder={
                 weatherData?.city
                   ? `${weatherData.city?.name}, ${weatherData.city?.country}`
@@ -143,20 +171,28 @@ const Today = () => {
             }`}
           >
             {JSON.stringify(geoData) !== "[]" ? (
-              geoData.map((data, index) => (
-                <option
-                  onMouseOver={() => handleMouseOver(index)}
-                  key={index}
-                  onClick={() => geoData && handleClick(geoData[index])}
-                  className={`p-1 pl-3 rounded-md ${
-                    sendIndex === index
-                      ? "bg-[#9DB2BF] dark:bg-[#3282B8] text-white"
-                      : "hover:text-white dark:bg-[#BBE1FA] dark:text-black hover:bg-[#3282B8]"
-                  }  text-ellipsis overflow-hidden whitespace-nowrap`}
-                >
-                  {data.name}, {data.country}
-                </option>
-              ))
+              <div>
+                {geoData.map((data, index) => (
+                  <option
+                    onMouseOver={() => handleMouseOver(index)}
+                    key={index}
+                    onClick={() => geoData && handleClick(data, data.name)}
+                    className={`p-1 pl-3 rounded-md ${
+                      sendIndex === index
+                        ? "bg-[#9DB2BF] dark:bg-[#3282B8] text-white"
+                        : "hover:text-white dark:bg-[#BBE1FA] dark:text-black hover:bg-[#3282B8]"
+                    }  text-ellipsis overflow-hidden whitespace-nowrap`}
+                  >
+                    {data.name}, {data.country}
+                  </option>
+                ))}
+                {/* Code for future update */}
+                {/* {
+                JSON.stringify(lastestSearches) !== "[]" && (
+                  <div></div>
+                )
+              } */}
+              </div>
             ) : (
               <div>
                 {fetchGeoStatus === "pending" ? (
