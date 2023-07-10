@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-#search-places {
-  font-family: "Poppins", sans-serif;
+.hor-scroll::-webkit-scrollbar {
+  height: 1em;
+}
+
+.hor-scroll::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 100vw;
+  margin-block: 0.5em;
+}
+
+.hor-scroll::-webkit-scrollbar-thumb {
+  background: #e2e0e0;
+  border: 0.25em solid #fff;
+  border-radius: 100vw;
+}
+
+.hor-scroll::-webkit-scrollbar-thumb:hover {
+  background: #bfbdbd;
+  cursor: pointer;
 }

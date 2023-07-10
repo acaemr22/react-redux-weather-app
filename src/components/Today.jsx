@@ -28,7 +28,6 @@ const Today = () => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());
     };
-    console.log("resized");
     window.addEventListener("resize", updateDimension);
 
     return () => {
@@ -77,7 +76,7 @@ const Today = () => {
         (error) => {
           // Handle errors, e.g. user denied location sharing permissions
           alert(
-            "We cannot access your location. Please be sure that you allowed sites to know location."
+            "We cannot access your location. Please be sure that you allowed us to know your location."
           );
           console.error("Error getting user location:", error);
         }
@@ -101,7 +100,7 @@ const Today = () => {
   };
 
   return (
-    <div className="flex flex-col lg:h-full w-full lg:w-2/5 xl:w-1/4 py-5 h-screen">
+    <div className="flex flex-col lg:h-full w-full lg:w-2/5 xl:w-1/4 py-10">
       <div className="flex flex-col items-center justify-center gap-y-1">
         <form
           className="flex-row flex items-center justify-center gap-x-5"
@@ -175,7 +174,7 @@ const Today = () => {
           <div className="flex flex-col items-center">
             <Icon
               main={weatherData.list[0].weather[0].main}
-              size={screenSize.width < 768 ? 200 : 255}
+              size={screenSize.width < 1024 ? 200 : 255}
               viewBox={
                 screenSize.width < 1024 ? "15 10 120 120" : "15 10 120 120"
               }
@@ -191,21 +190,74 @@ const Today = () => {
           {/* Day and Hour */}
           <div className="flex flex-row justify-center lg:px-10 py-8 text-lg items-center">
             <span className="font-semibold">
-              {days[new Date(weatherData.list[0].dt_txt).getDay().toFixed()]},
+              {days[new Date(weatherData.list[0].dt_txt).getDay()]},
             </span>
             <pre> </pre>
             <span className="text-gray-500 flex items-center">
               {new Date(weatherData.list[0].dt_txt).getHours()}:00
             </span>
           </div>
-          <div className="w-full px-10">
+          <div className="w-full px-10 md:px-56 lg:px-10">
             <hr />
           </div>
-          <div className="py-5 font-semibold text-2xl">
-            {weatherData.list[0].weather[0].description
-              .split(" ")
-              .map((str) => str[0].toUpperCase() + str.slice(1))
-              .join(" ")}
+          <div className="flex flex-col gap-y-2">
+            <div className="py-5 flex items-center justify-center font-semibold text-2xl">
+              {weatherData.list[0].weather[0].description
+                .split(" ")
+                .map((str) => str[0].toUpperCase() + str.slice(1))
+                .join(" ")}
+            </div>
+            <div className="flex flex-row gap-x-2">
+              <div>
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 24 24"
+                  className="text-blue-500 text-2xl"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path
+                      fillRule="nonzero"
+                      d="M8 5a4 4 0 1 1 8 0v5.255a7 7 0 1 1-8 0V5zm1.144 6.895a5 5 0 1 0 5.712 0L14 11.298V5a2 2 0 1 0-4 0v6.298l-.856.597zm1.856.231V5h2v7.126A4.002 4.002 0 0 1 12 20a4 4 0 0 1-1-7.874zM12 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <div className="flex flex-row font-semibold text-md">
+                Feels Like:<pre> </pre>
+                <span> {weatherData.list[0].main.feels_like.toFixed(0)}</span>
+                <span className="">℃</span>
+              </div>
+            </div>
+            <div className="flex flex-row gap-x-2">
+              <div>
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 24 24"
+                  className="text-blue-500 text-2xl"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M10.5 17H4v-2h6.5a3.5 3.5 0 1 1-3.278 4.73l1.873-.703A1.5 1.5 0 1 0 10.5 17zM5 11h13.5a3.5 3.5 0 1 1-3.278 4.73l1.873-.703A1.5 1.5 0 1 0 18.5 13H5a3 3 0 0 1 0-6h8.5a1.5 1.5 0 1 0-1.405-2.027l-1.873-.702A3.501 3.501 0 0 1 17 5.5 3.5 3.5 0 0 1 13.5 9H5a1 1 0 1 0 0 2z"></path>
+                  </g>
+                </svg>
+              </div>
+              <div className="flex flex-row font-semibold text-md">
+                Wind Speed:<pre> </pre>
+                <span>{weatherData.list[0].wind.speed.toFixed(0)}</span>
+                <span className="">km/h</span>
+              </div>
+            </div>
           </div>
         </div>
       )}
