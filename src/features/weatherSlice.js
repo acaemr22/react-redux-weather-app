@@ -4,9 +4,7 @@ import axios from "axios";
 
 export const fetchGeo = createAsyncThunk("weather/fetchGeo", async (city) => {
   const res = await axios(
-    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${
-      import.meta.env.VITE_OPEN_WEATHER_API_KEY
-    }`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${VITE_OPEN_WEATHER_API_KEY}`
   );
   return res.data;
 });
@@ -15,9 +13,7 @@ export const fetchData = createAsyncThunk(
   "weather/fetchData",
   async ({ lat, lon }) => {
     const res = await axios(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${
-        import.meta.env.VITE_OPEN_WEATHER_API_KEY
-      }`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${VITE_OPEN_WEATHER_API_KEY}`
     );
     return { data: res.data };
   }
